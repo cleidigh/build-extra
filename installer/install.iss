@@ -336,6 +336,9 @@ const
     GP_FSCache        = 1;
     GP_GCM            = 2;
     GP_Symlinks       = 3;
+    
+    // Extra options2
+    GP_GSSH           = 1;
 
 #ifdef WITH_EXPERIMENTAL_BUILTIN_DIFFTOOL
     // Experimental options
@@ -384,6 +387,11 @@ var
     // Wizard page and variables for the extra options.
     ExtraOptionsPage:TWizardPage;
     RdbExtraOptions:array[GP_FSCache..GP_Symlinks] of TCheckBox;
+
+    // Wizard page and variables for the second extra options set.
+    ExtraOptionsPage2:TWizardPage;
+    RdbExtraOptions2:array[GP_GSSH] of TCheckBox;
+
 
 #ifdef WITH_EXPERIMENTAL_BUILTIN_DIFFTOOL
     // Wizard page and variables for the experimental options.
@@ -1356,6 +1364,9 @@ begin
 
     // 2nd option
     RdbExtraOptions[GP_GCM]:=CreateCheckBox(ExtraOptionsPage,'Enable Git Credential Manager','The <A HREF=https://github.com/Microsoft/Git-Credential-Manager-for-Windows>Git Credential Manager for Windows</A> provides secure Git credential storage'+#13+'for Windows, most notably multi-factor authentication support for Visual Studio'+#13+'Team Services and GitHub. (requires .NET framework v4.5.1 or or later).',TabOrder,Top,Left);
+
+    // 3rd option
+    RdbExtraOptions[GP_GSSH]:=CreateCheckBox(ExtraOptionsPage,'Enable Git SSH','Use Git Bash SSH',TabOrder,Top,Left);
 
     // Restore the settings chosen during a previous install, if .NET 4.5.1
     // or later is available.
